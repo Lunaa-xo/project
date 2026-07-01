@@ -1,0 +1,138 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Times New Roman', Times, serif;
+}
+
+body{
+    background:#570204;
+    color:#d4a23a;
+    padding:40px 20px;
+}
+
+.checkout-container{
+    max-width:800px;
+    margin:auto;
+    background:#6b0507;
+    border:2px solid #d4a23a;
+    border-radius:20px;
+    padding:35px;
+    box-shadow:0 10px 25px rgba(0,0,0,.3);
+}
+
+.checkout-container h1{
+    text-align:center;
+    font-size:45px;
+    margin-bottom:30px;
+    font-family:"Dancing Script", cursive;
+}
+
+.customer-info,
+.delivery,
+.summary,
+.payment{
+    margin-bottom:30px;
+}
+
+.customer-info h2,
+.delivery h2,
+.summary h2,
+.payment h2{
+    margin-bottom:15px;
+}
+
+.customer-info input,
+.delivery textarea{
+    width:100%;
+    padding:14px;
+    margin-bottom:15px;
+    border:2px solid #d4a23a;
+    background-color: #570204;
+    border-radius:10px;
+    font-size:16px;
+    font-weight: bolder;
+    outline:none;
+}
+
+.customer-info input:focus,
+.delivery textarea:focus{
+    border-color:#e40910;
+}
+
+.delivery textarea{
+    resize:none;
+    height:120px;
+}
+
+.location-container{
+    text-align:center;
+}
+
+#locationBtn{
+    background:#d4a23a;
+    color:#570204;
+    border:none;
+    border-radius:30px;
+    padding:12px 24px;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:.3s;
+}
+
+#locationBtn:hover{
+    background:#e40910;
+    color:white;
+    transform:translateY(-2px);
+}
+
+#locationText{
+    margin-top:15px;
+    background:#570204;
+    color:white;
+    border-left:5px solid #d4a23a;
+    border-radius:10px;
+    padding:15px;
+}
+
+.summary{
+    background:#570204;
+    padding:20px;
+    border-radius:15px;
+}
+
+#order-items p{
+    color:white;
+    margin-bottom:10px;
+}
+
+.summary h3,
+.summary h2{
+    display:flex;
+    justify-content:space-between;
+    margin-top:15px;
+}
+
+.payment label{
+    color:white;
+    font-size:17px;
+}
+
+#payBtn{
+    width:100%;
+    padding:15px;
+    background:#d4a23a;
+    color:#570204;
+    border:none;
+    border-radius:30px;
+    font-size:18px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:.3s;
+}
+
+#payBtn:hover{
+    background:#e40910;
+    color:white;
+}

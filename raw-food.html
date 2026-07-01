@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=New+Tegomin&family=Pacifico&display=swap"
+        rel="stylesheet">
+        <link rel="stylesheet" href="raw-food.css">
+</head>
+
+<body>
+            <header>
+        <div class="logo">
+            <img src="./IMAGES/Dabisz_logo-removebg-preview.png" alt="">
+            <h3>Dabisz Delicacies</h3>
+        </div>
+        <nav>
+            <a href="food.html">Home</a>
+                <a href="menu.html">Menu</a>
+            <a href="#about">About Us</a>
+            <a href="#contact">Contact</a>
+
+        </nav>
+
+    </header>
+    <h1>RAW FOODS</h1>
+    
+
+<div class="page-layout">
+
+    <section class="dishes">
+
+        <div class="dish-container">
+
+            <div class="dish-card">
+                <img src="./IMAGES/Raw rice.jpg" alt="">
+                <h3>Rice</h3>
+
+                <div class="price-row">
+                    <span>₦1,500</span>
+                    <button onclick="addToCart('Raw Rice', 1500)">Order</button>
+                </div>
+            </div>
+
+            <div class="dish-card">
+                <img src="./IMAGES/Garri.jpg" alt="">
+                <h3>Garri</h3>
+
+                <div class="price-row">
+                    <span>₦1,200</span>
+                    <button onclick="addToCart('Garri', 1200)">Order</button>
+                </div>
+            </div>
+
+            <div class="dish-card">
+                <img src="./IMAGES/raw beans.jpg" alt="">
+                <h3>Beans</h3>
+
+                <div class="price-row">
+                    <span>₦1,300</span>
+                    <button onclick="addToCart('Beans', 1300)">Order</button>
+                </div>
+            </div>
+
+            <div class="dish-card">
+                <img src="./IMAGES/Raw spaghetti.jpg" alt="">
+                <h3>Spaghetti</h3>
+
+                <div class="price-row">
+                    <span>₦1,300</span>
+                    <button onclick="addToCart('Spaghetti', 1300)">Order</button>
+                </div>
+            </div>
+
+            <div class="dish-card">
+                <img src="./IMAGES/Raw yam.jpg" alt="">
+                <h3>Yam</h3>
+                <p>Per Tuber</p>
+
+                <div class="price-row">
+                    <span>₦3,500</span>
+                    <button onclick="addToCart('Yam', 3500)">Order</button>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+    <aside class="cart-section">
+
+        <div class="cart-box">
+
+            <h2>🛒 Cart (<span id="cart-count">0</span>)</h2>
+
+            <div id="cart-items">
+                <p>Your cart is empty.</p>
+            </div>
+
+            <h3>Total: ₦<span id="cart-total">0</span></h3>
+
+        </div>
+
+        <button id="checkoutBtn">
+            Proceed to Checkout
+        </button>
+
+    </aside>
+
+</div>
+   <hr>
+
+    <p class="copyright">
+        © 2026 Dabisz Delicacies. All Rights Reserved.
+    </p>
+    <script>
+
+        let cart = [];
+
+        function addToCart(food, price) {
+
+            cart.push({
+                name: food,
+                price: price
+            });
+
+            updateCart();
+        }
+
+        function removeItem(index) {
+
+            cart.splice(index, 1);
+
+            updateCart();
+        }
+
+        function updateCart() {
+
+            const cartItems =
+                document.getElementById("cart-items");
+
+            const cartCount =
+                document.getElementById("cart-count");
+
+            const cartTotal =
+                document.getElementById("cart-total");
+
+            cartItems.innerHTML = "";
+
+            let total = 0;
+
+            if (cart.length === 0) {
+                cartItems.innerHTML =
+                    "Your cart is empty";
+            }
+
+            cart.forEach((item, index) => {
+
+                total += item.price;
+                const div = document.createElement("div");
+                div.className = "cart-item";
+
+                const span = document.createElement("span");
+                span.textContent = `${item.name} - ₦${item.price}`;
+
+                const button = document.createElement("button");
+                button.textContent = "Remove";
+                button.className = "remove-btn";
+
+                button.addEventListener("click", () => {
+                    removeItem(index);
+                });
+
+                div.appendChild(span);
+                div.appendChild(button);
+
+                cartItems.appendChild(div);
+
+
+            });
+
+            cartCount.textContent = cart.length;
+
+            cartTotal.textContent = total;
+        }
+          const checkoutBtn = document.getElementById("checkoutBtn");
+
+        checkoutBtn.addEventListener("click", () => {
+
+            if (cart.length === 0) {
+                alert("Your cart is empty!");
+                return;
+            }
+
+            // Save the cart
+            localStorage.setItem("cart", JSON.stringify(cart));
+
+            // Go to checkout page
+            window.location.href = "checkout.html";
+
+        });
+
+    </script>
+
+</body>
+
+</html>

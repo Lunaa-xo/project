@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+</head>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-family:'Times New Roman', Times, serif;
+        color: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color:  #570204;
+    }
+
+    .form {
+        border: 1px solid #5e024f49;
+        margin: auto;
+        padding: 10px;
+        box-sizing: border-box;
+        width: 400px;
+        box-shadow: 15px 15px 46px #5e024e77;
+        border-radius: 15px;
+        animation: breathe 5s ease-in-out infinite;
+        background-color: rgb(133, 11, 11);
+    }
+
+    form .error {
+        border: 1px solid rgba(54, 11, 174, 0.671);
+        border-radius: 10px;
+        padding: 5px;
+        display: flex;
+        color: rgba(74, 14, 239, 0.671);
+        justify-content: space-between;
+        display: none;
+        animation: Error 2s ease-in-out infinite;
+    }
+
+    @keyframes Error {
+        0% {
+            transform: scale(0.96);
+        }
+        50% {
+            transform: scale(1);
+        }
+        100% {
+            transform: scale(0.96);
+        }
+    }
+
+    form .success {
+        border: 1px solid rgba(0, 128, 0, 0.623);
+        border-radius: 10px;
+        padding: 5px;
+        display: flex;
+        color: rgba(0, 128, 0, 0.623);
+        justify-content: space-between;
+        margin-top: 5px;
+        display: none;
+    }
+
+    form span {
+        cursor: pointer;
+    }
+
+    @keyframes breathe {
+        0% {
+            transform: scale(1);
+        }
+
+        50% {
+            transform: scale(1.04);
+        }
+
+        100% {
+            transform: scale(1);
+        }
+    }
+
+    h2 {
+        place-items: center;
+        color: black;
+    }
+
+    input {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        box-sizing: border-box;
+        border-radius: 10px;
+        border: none;
+        background-color: rgba(245, 240, 240, 0.267);
+        box-shadow: 6px 15px 46px #5e024f2a;
+    }
+
+    input:hover {
+        transform: scale(1.01);
+        transition: all 0.5s ease-in-out;
+        background-color: #d20d0d15;
+    }
+
+    input[type="submit"] {
+        background-color:  #570204;
+        color: black;
+        font-size: 16px;
+        font-weight: bolder;
+        border: none;
+        border-radius: 15px;
+        cursor: pointer;
+    }
+
+    input[type="submit"]:hover {
+        background-color: #dc0c132a;
+    }
+</style>
+
+<body>
+
+    <form class="form" action="">
+        <h2>Create Account</h2>
+        <div class="error">
+            <span id="errorMessage"></span>
+            <span id="closeError">x</span>
+        </div>
+        <div class="success">
+            <span id="successMessage"></span>
+            <span id="closeSuccess">x</span>
+        </div>
+        <input class="username" type="text" placeholder="Username" required>
+        <input class="email" placeholder="Email">
+        <input class="password" type="password" placeholder="Password">
+        <input class="button" type="submit" value="Sign Up">
+    </form>
+
+</body>
+<script>
+
+    let button = document.querySelector(".button");
+    let form = document.querySelector(".form");
+    let regex = /^[a-zA-Z0-9]+$/;
+
+
+
+    let closeError = document.getElementById("closeError");
+    let closeSuccess = document.getElementById("closeSuccess");
+
+    let error = document.querySelector(".error");
+    let success = document.querySelector(".success");
+
+    let errorMessage = document.getElementById("errorMessage")
+    let successMessage = document.getElementById("successMessage")
+
+
+    // EVENT FOR CLOSE ERROR
+
+    closeError.addEventListener("click", () => {
+        let error = document.querySelector(".error");
+        error.style.display = "none";
+    });
+
+    // EVENT FOR CLOSE SUCCESS
+
+    closeSuccess.addEventListener("click", () => {
+        let success = document.querySelector(".success");
+        success.style.display = "none";
+    });
+
+    button.addEventListener("click", (e) => {
+        let username = document.querySelector(".username").value;
+        let email = document.querySelector(".email").value;
+        let password = document.querySelector(".password").value;
+
+
+        e.preventDefault();
+
+        if (username == "") {
+            // alert("Please enter your username");
+            error.style.display = "block";
+            errorMessage.textContent = "Enter Username";
+            return;
+        }
+        else if (email == "") {
+            // alert("Please enter your email");
+            error.style.display = "block";
+            errorMessage.textContent = "Enter Email";
+            return;
+        }
+        else if(password == ""){
+            // alert("Please enter your password")
+            errorMessage.textContent = "Please enter your password";
+            error.style.display = "flex";
+            return;
+        }
+
+        else if(!regex.test(username)){
+            errorMessage.textContent = "Invalid username";
+            error.style.display = "block";
+            return;
+        }
+
+        else if (!email.includes("@")) {
+            // alert("Please enter a valid email address");
+            errorMessage.textContent = "Invalid email";
+            error.style.display = "block";
+            return;
+        }
+        if (password.length < 6) {
+            errorMessage.textContent = "Password is too short";
+            error.style.display = "block";
+            return;
+        }
+
+        else {
+            successMessage.textContent = "Login successful";
+            success.style.display = "block";
+
+            setTimeout(() => {
+                location.href = "food.html";
+            }, 2000)
+        }
+      
+
+        event.preventDefault();
+     
+    });
+    
+</script>
+
+</html>

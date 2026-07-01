@@ -1,0 +1,290 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Times New Roman', Times, serif;
+}
+
+body{
+    background:#570204;
+}
+
+/* HEADER */
+
+header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:15px 40px;
+    background:#570203e0;
+    position:sticky;
+    top:0;
+    z-index:1000;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+}
+
+.logo img{
+    width:70px;
+}
+
+.logo h3{
+    color:#d4a23a;
+    margin-left:10px;
+}
+
+nav{
+    display:flex;
+    gap:30px;
+}
+
+nav a{
+    color:#d4a23a;
+    text-decoration:none;
+    font-size:18px;
+    transition:.3s;
+}
+
+nav a:hover{
+    color:#e40910;
+}
+
+/* TITLE */
+
+h1{
+    text-align:center;
+    color:#d4a23a;
+    font-family:"Dancing Script", cursive;
+    font-size:3rem;
+    margin:30px 0;
+}
+
+/* MAIN LAYOUT */
+
+.menu-layout{
+    width:95%;
+    margin:auto;
+    display:flex;
+    gap:40px;
+    align-items:flex-start;
+}
+
+/* FOOD */
+
+.dishes{
+    flex:1;
+}
+
+.dish-container,
+.dish-II,
+.dish-III{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:30px;
+    margin-bottom:30px;
+}
+
+.dish-card{
+    width:300px;
+    background:#6b0507;
+    border:2px solid #d4a23a;
+    border-radius:20px;
+    overflow:hidden;
+    transition:.3s;
+}
+
+.dish-card:hover{
+    transform:translateY(-8px);
+}
+
+.dish-card img{
+    width:100%;
+    height:220px;
+    object-fit:cover;
+}
+
+.dish-card h3{
+    color:#d4a23a;
+    padding:15px 15px 5px;
+}
+
+.dish-card p{
+    color:white;
+    padding:0 15px;
+}
+
+.rating{
+    color:#d4a23a;
+    font-weight:bold;
+}
+
+.rating span{
+    color:white;
+    font-size:14px;
+}
+
+.price-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px 15px;
+}
+
+.price-row span{
+    color:#d4a23a;
+    font-size:20px;
+    font-weight:bold;
+}
+
+.price-row button{
+    background:#d4a23a;
+    color:#570204;
+    border:none;
+    border-radius:30px;
+    padding:10px 18px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.price-row button:hover{
+    background:#e40910;
+    color:white;
+}
+
+/* CART */
+
+.cart-section{
+    width:330px;
+    position:sticky;
+    top:100px;
+}
+
+.cart-box{
+    background:#6b0507;
+    border:2px solid #d4a23a;
+    border-radius:20px;
+    padding:20px;
+}
+
+.cart-box h2,
+.cart-box h3{
+    color:#d4a23a;
+}
+
+#cart-items{
+    margin:20px 0;
+    max-height:250px;
+    overflow-y:auto;
+}
+
+#cart-items p{
+    color:white;
+}
+
+.cart-item{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin:12px 0;
+    color:white;
+}
+
+.remove-btn{
+    background:#e40910;
+    color:white;
+    border:none;
+    border-radius:6px;
+    padding:7px 12px;
+    cursor:pointer;
+}
+
+.remove-btn:hover{
+    background:#ff3038;
+}
+
+/* CHECKOUT */
+
+#checkoutBtn{
+    width:100%;
+    margin-top:15px;
+    padding:15px;
+    background:#d4a23a;
+    color:#570204;
+    border:none;
+    border-radius:30px;
+    font-size:17px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:.3s;
+}
+
+#checkoutBtn:hover{
+    background:#e40910;
+    color:white;
+}
+
+/* SCROLLBAR */
+
+#cart-items::-webkit-scrollbar{
+    width:6px;
+}
+
+#cart-items::-webkit-scrollbar-thumb{
+    background:#d4a23a;
+    border-radius:10px;
+}
+
+hr{
+    margin:35px  50px;
+    border:1px solid rgba(255,255,255,.2);
+}
+
+.copyright{
+    text-align:center;
+    color:white;
+    font-size:15px;
+    margin-bottom: 20px;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:1000px){
+
+.menu-layout{
+    flex-direction:column;
+}
+
+.cart-section{
+    width:100%;
+    position:static;
+}
+
+}
+
+@media(max-width:650px){
+
+header{
+    flex-direction:column;
+    gap:15px;
+}
+
+nav{
+    flex-wrap:wrap;
+    justify-content:center;
+}
+
+.dish-card{
+    width:100%;
+    max-width:330px;
+}
+
+h1{
+    font-size:2.4rem;
+}
+
+}

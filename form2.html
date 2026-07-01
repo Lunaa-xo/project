@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Courier New', Courier, monospace;
+            /* color: #fff; */
+            height: 100vh;
+        }
+
+        .form {
+            border: 1px solid #bbb;
+            margin: auto;
+            padding: 10px;
+            box-sizing: border-box;
+            border-radius: 10px;
+            width: 400px;
+            height: max-content;
+            margin-top: 100px;
+            margin-bottom: 70px;
+        }
+
+        .form h2 {
+            color: rgb(34, 33, 33);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-align: center;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            outline: none;
+            border: 1px solid #bbb;
+            border-radius: 5px;
+            margin-top: 10px;
+            box-sizing: border-box;
+        }
+
+        input[type=submit] {
+            background-color: hsl(240, 79%, 59%);
+            border-radius: 5px;
+            border: none;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+
+        input[type=submit]:hover {
+            background-color: hsl(240, 79%, 69%);
+        }
+
+        .form .error {
+            border: 1px solid rgb(243, 66, 66);
+            border-radius: 5px;
+            padding: 8px;
+            display: flex;
+            color: rgb(236, 132, 132);
+            justify-content: space-between;
+            display: none;
+        }
+
+        .form .success {
+            border: 1px solid rgb(66, 255, 66);
+            border-radius: 5px;
+            padding: 8px;
+            display: flex;
+            color: rgb(132, 255, 132);
+            justify-content: space-between;
+            margin-top: 3px;
+            display: none;
+        }
+
+        .form #closeError {
+            cursor: pointer;
+            display: inline-block;
+            position: relative;
+            right: -200px;
+        }
+
+        .form #closeSuccess {
+            cursor: pointer;
+            display: inline-block;
+            position: relative;
+            right: 50px;
+        }
+
+        span {
+            display: inline;
+        }
+
+        table {
+            margin: auto;
+        }
+    </style>
+</head>
+
+<body>
+
+    <form action="" class="form">
+        <h2 id="header-2">Register</h2>
+        <!-- Error -->
+        <div class="error">
+            <span id="errorMessage"></span>
+            <span id="closeError">x</span>
+        </div>
+        <!-- Success -->
+        <div class="success">
+            <span id="successMessage"></span>
+            <span id="closeSuccess">x</span>
+        </div>
+        <input class="username" type="text" placeholder="Enter username" required>
+        <input class="email" placeholder="Enter email" type="email">
+        <input class="password" type="password" placeholder="Enter password">
+        <input class="button" type="submit" value="Sign up">
+    </form>
+
+    <table border="1" cellpadding="4px" cellspacing="5px">
+        <thead>
+            <tr>
+                <th>S/N.</th>
+                <th>User names</th>
+                <th>Email</th>
+                <th>Password</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td id="sn"></td>
+                <td id="usernameU"></td>
+                <td id="emailU"></td>
+                <td id="passwordU"></td>
+            </tr>
+        </tbody>
+    </table>
+
+
+    <script>
+        let button = document.querySelector(".button");
+        // let form = document.querySelector(".form");
+
+        // form.addEventListener("submit");
+
+        let closeError = document.getElementById("closeError");
+        let closeSuccess = document.getElementById("closeSuccess");
+
+        let error = document.querySelector(".error");
+        let success = document.querySelector(".success");
+
+        let errorMessage = document.getElementById("errorMessage");
+        let successMessage = document.getElementById("successMessage");
+
+        let header = document.getElementById("header-2");
+
+        // Event for close Error
+        closeError.addEventListener("click", () => {
+            error.style.display = "none";
+        });
+
+        // Event for close Success
+        closeSuccess.addEventListener("click", () => {
+            success.style.display = "none";
+        })
+
+        button.addEventListener("click", (event) => {
+
+            // Users details
+            let username = document.querySelector(".username").value;
+            let email = document.querySelector(".email").value;
+            let password = document.querySelector(".password").value;
+
+            // let capital = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            // let small = "abcdefghijklmnopqrstuvwxyw";
+            // let small2 = capital.toLocaleLowerCase();
+            let regex = /^[a-zA-Z0-9]+$/;
+
+            event.preventDefault();
+
+            if (username == "") {
+                error.style.display = "block";
+                errorMessage.textContent = "Enter username";
+            }
+            else if (username.length <= 3) {
+                error.style.display = "block";
+                errorMessage.textContent = "Username is too short";
+            }
+            else if (!regex.test(username)) {
+                error.style.display = "block";
+                errorMessage.textContent = "Invalid username";
+            }
+            else if (email == "") {
+                error.style.display = "block";
+                errorMessage.textContent = "Enter email";
+            }
+            else if (!email.includes("@")) {
+                error.style.display = "block";
+                errorMessage.textContent = "Email is invalid";
+            }
+            else if (password == "") {
+                error.style.display = "block";
+                errorMessage.textContent = "Enter password";
+            }
+            else if (password.length <= 3) {
+                error.style.display = "block";
+                errorMessage.textContent = "Password is too short";
+            }
+            // else if(!password.includes(password.toUpperCase())){
+            //     alert("Password must include a capital letter")
+            // }
+            // else if (!capital.forEach((caps) => {
+            //     password.includes(caps)
+            // })) {
+            //     alert("Password must include a capital letter")
+            // }
+            else {
+                error.style.display = "none";
+
+                success.style.display = "block";
+                successMessage.textContent = "Registered successfully..";
+                header.textContent = "Registered successfully..";
+                header.style.color = "green";
+
+                // Create object of user
+                let user = {
+                    username: username,
+                    email: email,
+                    password: password
+                };
+
+                document.querySelector(".username").value = "";
+                document.querySelector(".email").value = "";
+                document.querySelector(".password").value = "";
+
+                // Get existing users from localStorage
+                let users = JSON.parse(localStorage.getItem("users")) || [];
+
+                /// Add new user
+                users.push(user);
+
+                // Save updated array
+                localStorage.setItem("users", JSON.stringify(users));
+
+                console.log("All users:", users);
+
+                // users.forEach((user) => {
+                //     console.log(user);
+                // });
+
+                // User table display
+                let sn = document.querySelector("#sn");
+                let usernameU = document.querySelector("#usernameU");
+                let emailU = document.querySelector("#emailU");
+                let passwordU = document.querySelector("#passwordU");
+
+                users.forEach((user) => {
+                    let count = 1;
+                    sn.innerHTML = count++;
+                    usernameU.innerHTML = user.username;
+                    emailU.innerHTML = user.email;
+                    passwordU.innerHTML = user.password;
+                })
+
+
+                // setTimeout(() => {
+                //     location.href = "../switch2.html";
+                // }, 4000);
+
+            };
+        });
+
+
+
+        //  STATIC -- Keyword that defines the properties  or mthods that belong to a class itself rather than 
+        // object created from the cass (class owns anything static, no the bject)
+
+        class Mathutil{
+            static PI = 3.14159;
+
+            static  getDiameter(radius){
+                return radius * 2;
+            }
+            static getCircumference(radius){
+                return 2 * this.PI * radius * radius;
+            }
+        }
+
+        console.log(Mathutil.PI)
+        console.log(Mathutil.getDiameter(10));
+        console.log(Mathutil.getCircumference(10));
+        console.log(Mathutil.getArea(10));
+
+
+        // CLASSES
+        class Product{
+            constructor(name,price){
+                this.name=name,
+                this.price= price
+            };
+            displayProduct(){
+                console.log(`Product: ${this.name}`); 
+                console.log(`Product: $${this.price.toFixed(2)}`);            
+             }
+             
+        }
+        let product1 = new Product("Iphone", 30.00);
+         let product2 = new Product("Car", 400.00);
+        product1.displayProduct();
+
+
+
+        // INHERITANCE = allows a new class to inherit properties and methods from an
+        //  existing class (parent-> child). Helps with code reuseability
+
+        class Animal{
+            alive = true;
+            eat(){
+                console.log(`This ${this.name} is eating`);
+            }
+            sleep(){
+                console.log(`This ${this.name} is sleeping`);
+            }
+        }
+
+
+        class Rabbit extends Animal{
+            name = "rabbbit";
+            
+            run(){
+                console.log(`This ${this.name} is running`);
+            }
+        }
+
+             class Fish extends Animal{
+            name = "Fish";
+            
+            swim(){
+                console.log(`This ${this.name} is running`);
+            }
+        }
+             class Hawk extends Animal{
+            name = "Hawk";
+            
+            run(){
+                console.log(`This ${this.name} is flying`);
+            }
+        }
+
+    </script>
+</body>
+
+</html>
